@@ -6,7 +6,8 @@ import { debounce, duration } from '@material-ui/core';
 import GameQuestions from './GameQuestions'
 import GameQuestionOver from './Game_Question_Over'
 import './Game.css'
-
+import logo from '../../assets/logo.svg'
+import listPlayerJson from './listPlayer.json'
 
 function Game(props) {
     const [state, setState] = useState({
@@ -40,8 +41,47 @@ function Game(props) {
             point: 1000
         },
     ]
+    // var listTestPlayer = JSON.parse(listPlayer)
     var listTestPlayer=[
         {id: 1,
+            name: "anh a",
+            score: 0,
+            qAnswered: false, // da tra loi chua
+            answeredCorrect: false // tra loi dung chua
+        },
+        {   
+            id: 2,
+            name: "anh b",
+            score: 0,
+            qAnswered: false, // da tra loi chua
+            answeredCorrect: false // tra loi dung chua
+        },
+        {
+            id: 3,
+            name: "anh c",
+            score: 0,
+            qAnswered: false, // da tra loi chua
+            answeredCorrect: false // tra loi dung chua
+        },        {id: 1,
+            name: "anh a",
+            score: 0,
+            qAnswered: false, // da tra loi chua
+            answeredCorrect: false // tra loi dung chua
+        },
+        {   
+            id: 2,
+            name: "anh b",
+            score: 0,
+            qAnswered: false, // da tra loi chua
+            answeredCorrect: false // tra loi dung chua
+        },
+        {
+            id: 3,
+            name: "anh c",
+            score: 0,
+            qAnswered: false, // da tra loi chua
+            answeredCorrect: false // tra loi dung chua
+        },        {id: 1,
             name: "anh a",
             score: 0,
             qAnswered: false, // da tra loi chua
@@ -64,10 +104,11 @@ function Game(props) {
     ]
     useEffect(() => {
         // tạo mã pin
-        setState({...state, listQuestion:listTestQUiz, listPlayer:listTestPlayer, pin:generatePin()}) // ==> get data from DB
+        setState({...state, listQuestion:listTestQUiz,listPlayer: listPlayerJson, pin:generatePin()}) // ==> get data from DB
     }, [])
     function generatePin() {
-        let newPin = Math.floor(Math.random() * 9000, 10000)
+        // console.log(listPlayer)
+        let newPin = Math.floor(Math.random() * 9000000, 10000000)
         return newPin;
         // Socket.emit('host-join', { pin: newPin })
         // ==> đưa pin lên db
@@ -102,7 +143,7 @@ function Game(props) {
         setState({ ...state, charts: sorted.slice(0, 5) })
     }
     function questionOver() {
-        // Socket.emit('question-over', state.pin);
+        // Socket.emit('question-over', state.pin); 
         let updatedListPlayer = [...state.listPlayer];
         updatedListPlayer.forEach((player) => {
             player.qAnswered = false;
@@ -169,7 +210,9 @@ function Game(props) {
     }
     var mappedPlayersInRoom=state.listPlayer.map(player=>{
         return(
-        <p key={player.id} className="player-name">{player.name}</p>
+        <div key={player.id} className="col-md-2 p-5">
+            <span>{player.name}</span>
+        </div>
         )
     })
     var Charts=()=>{
@@ -184,16 +227,63 @@ function Game(props) {
     }
     return (
         <div className='component-container' >
-            <div className='pin'>
-                <p id='player-pin'>Pin Code</p>
-                <h1>{state.pin}</h1>
-            </div> 
+            <div className="test">
+                <div className="test_2">
+                    <div className="test_3">
+                        <div className="test_4">
+                            <div className="test_5">
+                                <div className="test_6">
+                                    <div>Join at <strong>www.kahoot.it</strong></div>
+                                    <div>or with the <strong>Kahoot! app</strong></div>
+                                </div>
+                            </div>
+                            <div className="test_5_1">
+                                <div className="test_5_1_a">Game PIN:</div>
+                                <div className="test_5_1_b">{state.pin}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* <div className='pin' id='player-pin'> */}
+                {/* Pin Code: {state.pin} */}
+                {/* <div id='player-pin'></div> */}
+                {/* <div>{state.pin}</div> */}
+            {/* </div>  */}
             {
                 !state.isPlaying && !state.questionOver && !state.gameOver ?
-                    <div className='btn-players' >
-                        <button onClick={() => startGame()}className='btn-play' >Play</button>
-                        <p className='player-name' id='player-join'>Players joined!</p>
-                        {mappedPlayersInRoom}
+                    <div>
+                        <div className='btn-players row justify-content-between' >
+                            <div className='col-md-2'>
+                                <div className='player-count'>
+                                <span className="icon__Icon-xvsbpg-0 bJpEJN player-counter__Icon-fb3lj4-1 iItBrS" style={{display: 'inline-block', verticalAlign: 'middle', width: '4vmin', height: '4vmin'}}>
+                                    <svg id="icon1" data-functional-selector="icon" viewBox="0 0 32 32" focusable="false" stroke="none" strokeWidth={0}>
+                                        <path 
+                                            d="M16,16 C13.2385763,16 11,13.7614237 11,11 C11,8.23857625 13.2385763,6 16,6 C18.7614237,6 21,8.23857625 21,11 C21,13.7614237 18.7614237,16 16,16 Z M25,24.3125 L7,24.3125 C7,20.2739178 11.0294373,17 16,17 C20.9705627,17 25,20.2739178 25,24.3125 Z" 
+                                            style={{fill: 'rgb(255, 255, 255)'}}>
+                                        </path>
+                                    </svg>
+                                </span>
+                                <div style={{    
+                                                color: 'white',
+                                                fontWeight: 'bold',
+                                                fontSize: '3.5vmin',
+                                                lineHeight: '3.7vmin',
+                                            }}>    
+                                    {state.listPlayer.length}
+                                </div>    
+                                </div>
+                            </div>
+                            <div className='col-md-2'> 
+                                <img src={logo} alt="logo" height="55"/>
+                            </div>
+                            <div className='col-md-2 '>
+                                <button onClick={() => startGame()} className='btn-play ' >Play</button>
+                            </div>
+                        </div>
+                        <section className="list-player-joined">
+                            <div className="row justify-content-around ">{mappedPlayersInRoom}</div>
+                        </section>
                     </div>
                     :
                     state.isPlaying && !state.questionOver && !state.gameOver ?

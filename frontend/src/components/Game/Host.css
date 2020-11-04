@@ -12,14 +12,12 @@
 }
 
 .btn-play{
-    display: block;
+    
     font-family: montserrat,"helvetica neue",helvetica,arial,sans-serif;
     border-radius: 2px;
-    color: #fff;
+    color: black;
     text-shadow: 0 -1px 0 rgba(0,0,0,.25);
-    background-color: #333;
-    background-image: linear-gradient(to bottom,#333,#333);
-    background-repeat: repeat-x;
+    background-color: white;
     border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) rgba(0,0,0,.25);
     background-position: 0;
     width: 100px;
