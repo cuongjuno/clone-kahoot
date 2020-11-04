@@ -8,6 +8,11 @@ const QuestionSchema = new Schema({
     type: String,
     required: true
   },
+  image: {
+    type: String,
+    required: true,
+    default: 'https://source.unsplash.com/random'
+  },
   user: {
     type: Schema.Types.ObjectId,
     required: true,
@@ -26,6 +31,14 @@ const QuestionSchema = new Schema({
       type: Number,
       required: true
     }
+  },
+  time: {
+    type: Number,
+    required: true
+  },
+  point: {
+    type: Number,
+    required: true
   },
   likes: [
     {
