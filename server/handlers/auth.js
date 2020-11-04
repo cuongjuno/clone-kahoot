@@ -39,7 +39,7 @@ const signup = async (req, res) => {
   if (savedUser)
   {
     const payload = { user: savedUser._id };
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 360000 });
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: Date.now() + (60 * 60 * 1000) });
     return res.json({ token });
   }
   return res.status(500).json({ msg: 'Something went wrong.Please try again!' });
@@ -70,7 +70,7 @@ const login = async (req, res) => {
     return res.status(401).json({ msg: 'Invalid credentials. Please try again!' });
   }
   const payload = { user: user._id };
-  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 360000 });
+  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: Date.now() + (60 * 60 * 1000) });
   return res.json({ token });
 }
 
@@ -78,3 +78,4 @@ module.exports = {
   signup: signup,
   login: login
 }
+
