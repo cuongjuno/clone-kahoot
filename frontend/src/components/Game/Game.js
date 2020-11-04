@@ -17,9 +17,7 @@ function Game(props) {
         gameOver: false,
         questionOver: false,
         currentQuestion: 0,
-        listQuestion: [
-
-        ],
+        listQuestion: [],
         listPlayer: [],
         charts: [5]
     })
