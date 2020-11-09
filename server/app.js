@@ -26,6 +26,7 @@ app.use((req, res, next) => {
 app.use('/api/v1/auth', require('./routes/auth'));
 app.use('/api/v1/questions', require('./routes/question'));
 app.use('/api/v1/game', require('./routes/game'));
+app.use('/api/v1/users', require('./routes/users'));
 
 app.get('/', (req, res) => {
   res.send('Hello world');
