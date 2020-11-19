@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 
 const authMiddleware = async (req, res, next) => {
   const token = req.headers.authorization;
-
   if (!token)
   {
     return res.status(401).json({ msg: 'Invalid credentials.Please try again' });
@@ -11,7 +10,7 @@ const authMiddleware = async (req, res, next) => {
   let decoded;
   try
   {
-    decoded = jwt.verify(tokenId, process.env.JWT_SECRET);
+    decoded = await jwt.verify(tokenId, process.env.JWT_SECRET);
   } catch (error)
   {
     console.log(error);
